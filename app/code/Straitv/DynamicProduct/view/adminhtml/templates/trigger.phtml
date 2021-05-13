@@ -1,0 +1,115 @@
+<?php
+$helper = $this->helper('Straitv\DynamicProduct\Helper\Data');
+$isEnable = $helper->getConfigData('straitv_dynamic_product/settings/enable');
+
+if($isEnable){
+?>
+<div style="display:none;" id="messages">
+    <div class="messages">
+        <div class="message message-notice notice">
+            <div><?php // echo __("Please put your product images and downloadable product files in the pub/media/import folder."); ?></div>
+        </div>
+    </div>
+</div>
+<div class="mbBackground">
+    <div class="entry-edit form-inline">
+        <fieldset id="export_form" class="fieldset admin__fieldset">
+            <legend class="admin__legend legend"><span><?php echo __("Dynamic Product"); ?></span></legend><br>
+            <div class="messages"></div>
+            <div class="admin__field field field-store_id">
+            <label for="store_id" class="label admin__field-label">
+                <span><?php echo __("Create Product") ?></span>
+            </label>
+                <div class="admin__field-control control">	
+                    <button type="submit" id="create_product" value="create_product" name="create_product">Trigger</button>
+                </div>
+            </div>
+            <div class="admin__field field field-store_id">
+            <label for="store_id" class="label admin__field-label">
+                <span><?php echo __("Update Product") ?></span>
+            </label>
+                <div class="admin__field-control control">	
+                    <button type="submit" id="update_product" value="update_product" name="update_product">Trigger</button>
+                </div>
+            </div>
+
+            <input name="form_key" type="hidden" value="<?php echo $block->getFormKey() ?>" />
+        </fieldset>
+    </div>
+</div>
+<div id="validatemodel"><div id="validatecontent"></div></div>
+
+<?php $create_url = $block->getUrl('*/*/create'); ?>
+<script type="text/javascript">
+ 	 require([
+		'jquery'
+	],
+	 function(jQuery) {
+		var formkey = "<?php echo $block->getFormKey() ?>";
+		var createurl = "<?php echo $create_url ?>";
+        var trigger = jQuery(this).attr('value');
+			//jQuery('#import_edit_form').on('click', '#import_product', function(event){
+		jQuery( "#create_product" ).click(function(e) {
+            e.preventDefault();
+			// var file = document.getElementById("filename");
+			var formData = new FormData();
+			// formData.append("filename", file.files[0]);
+			formData.append('form_key', formkey);
+            formData.append('create_product', true);
+			// var filename = jQuery('#filename').val();
+            jQuery.ajax({
+                url : createurl,
+                showLoader:true,
+                contentType: false,
+                processData: false,
+                data: formData,                         
+                type: 'post',
+                success: function(data){
+                    jQuery('.message.message-notice').html(data);
+                    jQuery('#messages').show();
+                    // jQuery('#result').html(data+'<img class="mbindexLoader" src="<?php echo $block->getViewFileUrl('Magebees_Products::images/loader-1.gif'); ?>" />');
+                    // window.setTimeout(function(){window.location="<?php echo $this->getUrl('products/import/index',array('active_tab'=>'runprofule_section'));?>";}, 3000);
+                }
+            });
+		});
+
+        jQuery( "#update_product" ).click(function(e) {
+            e.preventDefault();
+			// var file = document.getElementById("filename");
+			var formData = new FormData();
+            var trigger = jQuery(this).attr('value');
+			// formData.append("filename", file.files[0]);
+			formData.append('form_key', formkey);
+            formData.append('update_product', true);
+			// var filename = jQuery('#filename').val();
+            jQuery.ajax({
+                url : createurl,
+                showLoader:true,
+                contentType: false,
+                processData: false,
+                data: formData,                         
+                type: 'post',
+                success: function(data){
+                    jQuery('.message.message-notice').html(data);
+                    jQuery('#messages').show();
+                    // jQuery('#result').html(data+'<img class="mbindexLoader" src="<?php echo $block->getViewFileUrl('Magebees_Products::images/loader-1.gif'); ?>" />');
+                    // window.setTimeout(function(){window.location="<?php echo $this->getUrl('products/import/index',array('active_tab'=>'runprofule_section'));?>";}, 3000);
+                }
+            });
+		});
+	}
+);
+</script>
+<?php } else { ?>
+<?php $config_url = $block->getUrl('adminhtml/system_config/edit/section/straitv_dynamic_product'); ?>
+<div id="messages">
+    <div class="messages">
+        <div class="message message-notice notice">
+            <div>
+                <p><?php echo __("Your Extension is Disabled. Please enable your Extension from Configuration with this link <a href='". $config_url ."'>here</a>."); ?></p>
+                <p><?php echo __("Also provide Magento Admin Credentials As well."); ?></p>
+            </div>
+        </div>
+    </div>
+</div>
+<?php } ?>

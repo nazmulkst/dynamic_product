@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+    <group id="default">
+        <job name="straitv_dynamicproduct_run" instance="Straitv\DynamicProduct\Cron\Run" method="execute">
+            <schedule>*/59 * * * *</schedule>
+        </job>
+    </group>
+</config>

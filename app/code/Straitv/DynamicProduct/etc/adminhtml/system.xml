@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Config/etc/system_file.xsd">
+    <system>
+        <tab id="straitv" translate="label" sortOrder="110" class="straitv">
+            <label>Straitv</label>
+        </tab>
+        <section id="straitv_dynamic_product" translate="label" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Straitv Dynamic Product</label>
+            <tab>straitv</tab>
+            <resource>Straitv_DynamicProduct::straitv_dynamic_product</resource>
+            <group id="settings" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Straitv Dynamic Product Configuration</label>
+                <field id="enable" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Enable Module Activity</comment>
+                </field>
+
+                <field id="admin_user" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Admin User</label>
+                    <comment>Provide Admin Username</comment>
+                    <validate>required-entry no-whitespace</validate>
+                    <depends>
+                        <field id="straitv_dynamic_product/settings/enable">1</field>
+                    </depends>
+                </field>
+                <field id="admin_password" translate="label" type="password" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Admin PassWord</label>
+                    <comment>Provide Admin Password</comment>
+                    <validate>required-entry no-whitespace</validate>
+                    <depends>
+                        <field id="straitv_dynamic_product/settings/enable">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
