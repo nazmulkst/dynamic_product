@@ -52,11 +52,11 @@ class CreateProduct extends Command
          */
         $helper = ObjectManager::getInstance()->create(Data::class);
         if ($helper->run()) {
-            $helper->logMessage("Product Created.");
-            $output->writeln('Product Created.');
+            $helper->logMessage("Product Created Using Command Line.");
+            $output->writeln("<info>Finished Dynamic Product Create / Update Task.</info>");
         } else {
-            $output->writeln('Was not possible to run the command, please try again later. '.
-            'Check if the extension is enabled on admin and if you enabled the plugin.');
+            $output->writeln("<info>Was not possible to run the command, please try again later. '.
+            'Check if the extension is enabled on admin and if you enabled the plugin.</info>");
         }
         return $this;
     }

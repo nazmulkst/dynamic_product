@@ -15,4 +15,11 @@
             </argument>
         </arguments>
     </type>
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="dynamic_product_create" xsi:type="object">Straitv\DynamicProduct\Console\Command\CreateProduct</item>
+            </argument>
+        </arguments>
+    </type>
 </config>
