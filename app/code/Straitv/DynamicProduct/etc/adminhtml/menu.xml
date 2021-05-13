@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Straitv_DynamicProduct::admin_menu" title="Straitv" translate="title" module="Straitv_DynamicProduct" sortOrder="10" resource="Straitv_DynamicProduct::admin_menu"/>
+        <add id="Straitv_DynamicProduct::dynamic_product" title="Dynamic Product" translate="title" module="Straitv_DynamicProduct" sortOrder="10" resource="Straitv_DynamicProduct::dynamic_product" action="straitv/product/index" parent="Straitv_DynamicProduct::admin_menu"/>
+        <add id="Straitv_DynamicProduct::dynamic_product_configuration" title="Configuration" translate="title" module="Straitv_DynamicProduct" sortOrder="20" parent="Straitv_DynamicProduct::admin_menu" action="adminhtml/system_config/edit/section/straitv_dynamic_product" resource="Straitv_DynamicProduct::straitv_dynamic_product_configuration"/>
+    </menu>
+</config>
